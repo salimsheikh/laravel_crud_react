@@ -11,6 +11,9 @@ import { FormEvent, FormEventHandler } from 'react';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
+        title: 'Post',
+        href: '/posts',
+    }, {
         title: 'Edit Post',
         href: '/posts',
     },

@@ -2,7 +2,7 @@ import { PlaceholderPattern } from '@/components/ui/placeholder-pattern';
 import AppLayout from '@/layouts/app-layout';
 import { type BreadcrumbItem } from '@/types';
 import { Head, Link, router, usePage } from '@inertiajs/react';
-import Pagination from "@/components/Pagination";
+
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Posts',
@@ -20,27 +20,8 @@ type PageProps = {
     posts: Post[];
 };
 
-interface PaginationLink {
-    url: string | null;
-    label: string;
-    active: boolean;
-}
-
-interface PaginatedPosts {
-    data: Post[];
-    links: PaginationLink[];
-    current_page: number;
-    last_page: number;
-    from: number;
-    to: number;
-    total: number;
-}
-
-type Props = {
-    posts: PaginatedPosts;
-};
-export default function Index({ posts }: Props) {
-
+export default function PostIndex() {
+    const { posts } = usePage<PageProps>().props;
 
     const destroyPost = (e: React.FormEvent<HTMLFormElement>, id: number) => {
         e.preventDefault();
@@ -68,7 +49,7 @@ export default function Index({ posts }: Props) {
                         </tr>
                     </thead>
                     <tbody>
-                        {posts.data.map((post: Post) => (
+                        {posts.map((post) => (
                             <tr
                                 key={post.id}
                                 className="bg-white"
@@ -86,10 +67,6 @@ export default function Index({ posts }: Props) {
                         ))}
                     </tbody>
                 </table>
-
-                <Pagination pagination={posts} />
-
-
 
 
 
